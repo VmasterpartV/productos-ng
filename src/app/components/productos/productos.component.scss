@@ -1,0 +1,25 @@
+.card-img-top {
+    height: 220px;
+    width: auto;
+    object-fit: cover;
+}
+
+.card {
+    height: 500px;
+    /* Establece la altura deseada para todas las cards */
+    overflow-y: auto;
+    /* Permite el desplazamiento vertical si el contenido excede la altura */
+}
+
+.card-title, .card-text {
+    margin: 0;
+}
+
+.tachado {
+    text-decoration: line-through;
+    font-size: 14px;
+}
+
+.expanded {
+    width: 100%;
+}

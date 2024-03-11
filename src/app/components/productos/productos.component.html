@@ -1,1 +1,21 @@
-<p>productos works!</p>
+<div class="row">
+    <div class="col-md-3" *ngFor="let product of products">
+        <div class="card mb-3">
+            <img [src]="product.thumbnail" class="card-img-top" alt="Thumbnail">
+            <div class="card-body">
+                <h5 class="card-title">{{ product.brand }}</h5>
+                <h4 class="card-text">{{ product.title }}</h4>
+                <p class="card-text"><small class="text-muted">{{ product.description }}</small></p>
+                <h2 class="card-text">
+                    <span>{{ product.price | currency }}</span>
+                    <small class="tachado text-danger mx-1" *ngIf="product.discountPercentage > 0">
+                        {{ product.price + (product.price * product.discountPercentage / 100) | currency }}
+                    </small>
+                </h2>
+                <p class="card-text">Rating: {{ product.rating }}</p>
+                <p class="card-text">Stock: {{ product.stock }}</p>
+                <a href="#" class="btn btn-primary expanded mt-3">Add to Cart</a>
+            </div>
+        </div>
+    </div>
+</div>

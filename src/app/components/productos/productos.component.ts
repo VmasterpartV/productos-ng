@@ -39,9 +39,9 @@ export class ProductosComponent implements OnInit {
     return decimalPart !== 0;
   }
 
-  onScroll(event: any) {
-    if (event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight) {
-    }
+  onScroll(event: Event): void {
+    // Lógica que se ejecutará cuando ocurra un evento de desplazamiento
+    console.log('Se ha realizado un desplazamiento');
   }
 
   goTo(route: string) {
@@ -50,5 +50,13 @@ export class ProductosComponent implements OnInit {
 
   addToCart(product: any) {
     this.carritoService.agregarCarrito(product);
+  }
+
+  loadMore() {
+    console.log('Cargar más productos');
+    this.productosService.getMoreProducts().subscribe((result: any) => {
+      console.log(result);
+      this.products = this.products.concat(result['products']);
+    });
   }
 }

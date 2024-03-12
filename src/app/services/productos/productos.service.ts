@@ -24,4 +24,9 @@ export class ProductosService {
   getProduct(id: string) {
     return this.http.get(this.url + `/${id}`);
   }
+
+  getMoreProducts() {
+    this.skip += this.limit;
+    return this.http.get(this.url + `?limit=${this.limit}&skip=${this.skip}`);
+  }
 }

@@ -1,1 +1,47 @@
-<p>detalles-producto works!</p>
+<div class="row">
+    <div class="col-md-6">
+        <div *ngIf="product.images" id="carouselExample" class="carousel slide">
+            <div class="carousel-inner carousel-img">
+                <div class="carousel-item active">
+                    <img [src]="product.thumbnail" class="d-block w-100" alt="Product Image">
+                </div>
+                <div class="carousel-item" *ngFor="let image of product.images.slice(1)">
+                    <img [src]="image" class="d-block w-100" alt="Product Image">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <h5 class="card-title">{{ product.brand }}</h5>
+        <h4 class="card-text">{{ product.title }}</h4>
+        <p class="card-text stars-ctn">
+            <ng-container *ngIf="product.rating; else noRating">
+                <ng-container *ngFor="let _ of getWholeStarArray(product.rating)">
+                    <mat-icon class="stars">star</mat-icon>
+                </ng-container>
+                <mat-icon *ngIf="hasPartialStar(product.rating)" class="stars">star_half</mat-icon>
+            </ng-container>
+            <ng-template #noRating>
+                No hay valoración disponible.
+            </ng-template>
+        </p>
+        <p class="card-text"><small class="text-muted">{{ product.description }}</small></p>
+        <h2 class="card-text">
+            <span>{{ product.price | currency }}</span>
+            <small class="tachado text-danger mx-1" *ngIf="product.discountPercentage > 0">
+                {{ product.price + (product.price * product.discountPercentage / 100) | currency }}
+            </small>
+        </h2>
+        <p class="card-text">Stock: {{ product.stock }}</p>
+        <h4><span class="badge text-bg-secondary">{{ product.category }}</span></h4>
+        <button class="btn btn-primary mt-3" (click)="addToCart(product)">Add to Cart</button>
+    </div>
+</div>

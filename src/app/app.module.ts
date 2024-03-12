@@ -10,6 +10,7 @@ import { DetallesProductoComponent } from './components/detalles-producto/detall
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { MaterialModule } from './material/material.module';
     AppComponent,
     ProductosComponent,
     CarritoComponent,
-    DetallesProductoComponent
+    DetallesProductoComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

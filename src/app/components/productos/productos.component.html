@@ -1,7 +1,7 @@
-<div class="row">
+<div class="row" (scroll)="onScroll($event)">
     <div class="col-md-3" *ngFor="let product of products">
         <div class="card mb-3">
-            <img [src]="product.thumbnail" class="card-img-top" alt="Thumbnail">
+            <img title="Ver detalles" (click)="goTo('producto/' + product.id)" [src]="product.thumbnail" class="card-img-top" alt="Thumbnail">
             <div class="card-body">
                 <h5 class="card-title">{{ product.brand }}</h5>
                 <h4 class="card-text">{{ product.title }}</h4>
@@ -24,7 +24,7 @@
                     </small>
                 </h2>
                 <p class="card-text">Stock: {{ product.stock }}</p>
-                <a href="#" class="btn btn-primary expanded mt-3">Add to Cart</a>
+                <button class="btn btn-primary expanded mt-3" (click)="addToCart(product)">Add to Cart</button>
             </div>
         </div>
     </div>

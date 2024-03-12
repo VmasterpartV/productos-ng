@@ -1,1 +1,36 @@
-<p>carrito works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Carrito de Compras</h2>
+            <div *ngIf="carrito.length === 0"> <!-- Verificar si el carrito está vacío -->
+                <p>No hay productos en el carrito.</p>
+            </div>
+            <div *ngFor="let item of carrito">
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4 carrito-img">
+                            <img [src]="item.thumbnail" class="img-fluid rounded-start" alt="Product Image">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ item.title }}</h5>
+                                <p class="card-text">
+                                    Cantidad: 
+                                    <button class="btn btn-sm btn-primary" (click)="addOne(item)">+</button>
+                                    {{ item.cantidad }}
+                                    <button class="btn btn-sm btn-primary" (click)="quitOne(item)">-</button>
+                                </p>
+                                <p class="card-text">Precio unitario: {{ item.price | currency }}</p>
+                                <p class="card-text">Subtotal: {{ item.price * item.cantidad | currency }}</p>
+                                <button class="btn btn-danger" (click)="removerDelCarrito(item)">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="carrito.length > 0" class="text-end">
+                <h4>Total: {{ calcularTotalGlobal() | currency }}</h4>
+            </div>
+        </div>
+    </div>
+</div>

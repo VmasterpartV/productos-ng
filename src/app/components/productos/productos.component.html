@@ -5,6 +5,17 @@
             <div class="card-body">
                 <h5 class="card-title">{{ product.brand }}</h5>
                 <h4 class="card-text">{{ product.title }}</h4>
+                <p class="card-text stars-ctn">
+                    <ng-container *ngIf="product.rating; else noRating">
+                        <ng-container *ngFor="let _ of getWholeStarArray(product.rating)">
+                            <mat-icon class="stars">star</mat-icon>
+                        </ng-container>
+                        <mat-icon *ngIf="hasPartialStar(product.rating)" class="stars">star_half</mat-icon>
+                    </ng-container>
+                    <ng-template #noRating>
+                        No hay valoración disponible.
+                    </ng-template>
+                </p>
                 <p class="card-text"><small class="text-muted">{{ product.description }}</small></p>
                 <h2 class="card-text">
                     <span>{{ product.price | currency }}</span>
@@ -12,7 +23,6 @@
                         {{ product.price + (product.price * product.discountPercentage / 100) | currency }}
                     </small>
                 </h2>
-                <p class="card-text">Rating: {{ product.rating }}</p>
                 <p class="card-text">Stock: {{ product.stock }}</p>
                 <a href="#" class="btn btn-primary expanded mt-3">Add to Cart</a>
             </div>

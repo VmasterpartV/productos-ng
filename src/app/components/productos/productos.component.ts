@@ -23,4 +23,13 @@ export class ProductosComponent implements OnInit {
     });
   }
 
+  getWholeStarArray(rating: number): any[] {
+    const wholeStars = Math.floor(rating);
+    return new Array(wholeStars);
+  }
+
+  hasPartialStar(rating: number): boolean {
+    const decimalPart = rating % 1;
+    return decimalPart !== 0;
+  }
 }
